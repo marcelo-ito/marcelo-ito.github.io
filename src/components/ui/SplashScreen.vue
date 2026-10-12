@@ -76,15 +76,15 @@ onMounted(() => {
 .splash-role {
   font-family: 'DM Mono', monospace;
   font-size: 0.78rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--color-accent1); opacity: 0;
+  text-transform: uppercase; color: var(--color-inv-accent); opacity: 0;
 }
 .splash-progress {
   width: 100%; display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;
 }
 .splash-track { flex: 1; height: 1px; background: rgba(254,250,224,0.15); overflow: hidden; }
-.splash-fill  { height: 100%; background: var(--color-accent1); transform: scaleX(0); transform-origin: left; }
+.splash-fill  { height: 100%; background: var(--color-inv-accent); transform: scaleX(0); transform-origin: left; }
 .splash-counter {
   font-family: 'DM Mono', monospace; font-size: 0.7rem;
-  letter-spacing: 0.1em; color: var(--color-text-muted); min-width: 3ch; text-align: right;
+  letter-spacing: 0.1em; color: var(--color-inv-muted); min-width: 3ch; text-align: right;
 }
 </style>

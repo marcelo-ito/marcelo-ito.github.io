@@ -1,21 +1,49 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useLocaleStore } from '@/composables/useLocale'
 import { useThemeStore }  from '@/composables/useTheme'
 
 const locale = useLocaleStore()
 const themeStore = useThemeStore()
+const route = useRoute()
 const t = computed(() => locale.t)
 
 const isDark = computed(() => themeStore.theme === 'dark')
+const isHome = computed(() => route.name === 'home')
 
-const navLinks = computed(() => [
-  { label: t.value.nav.about,      href: '#sobre'       },
-  { label: t.value.nav.projects,   href: '#projetos'    },
-  { label: t.value.nav.skills,     href: '#skills'      },
-  { label: t.value.nav.experience, href: '#experiencia' },
-  { label: t.value.nav.contact,    href: '#contato'     },
-])
+// Home has the full single-page section list plus the two specialised portfolios;
+// /frontend and /backend only have Sobre + Projetos + Contato, plus a link back to Home.
+const navLinks = computed(() => {
+  if (isHome.value) {
+    return [
+      { label: t.value.nav.about,      href: '#sobre'       },
+      { label: t.value.nav.projects,   href: '#projetos'    },
+      { label: t.value.nav.skills,     href: '#skills'      },
+      { label: t.value.nav.experience, href: '#experiencia' },
+      { label: t.value.nav.contact,    href: '#contato'     },
+      { label: t.value.nav.frontend,   to: '/frontend', page: true },
+      { label: t.value.nav.backend,    to: '/backend',  page: true },
+    ]
+  }
+  return [
+    { label: t.value.nav.about,    href: '#sobre'    },
+    { label: t.value.nav.projects, href: '#projetos' },
+    { label: t.value.nav.contact,  href: '#contato'  },
+    { label: t.value.nav.home,     to: '/'           },
+  ]
+})
+
+// Each page has its own pair of themes; the toggle names the one you'd switch to.
+const THEME_LABELS = {
+  home:     { toLight: 'Light — Tema café',  toDark: 'Dark — Tema noite' },
+  frontend: { toLight: 'Light — Vue.js',     toDark: 'Dark — VS Code' },
+  backend:  { toLight: 'Light — React',      toDark: 'Dark — .NET' },
+}
+const themeLabel = computed(() => {
+  const labels = THEME_LABELS[route.name] ?? THEME_LABELS.home
+  return isDark.value ? labels.toLight : labels.toDark
+})
 
 const menuOpen = ref(false)
 function toggleMenu() { menuOpen.value = !menuOpen.value }
@@ -24,12 +52,14 @@ function closeMenu()  { menuOpen.value = false }
 
 <template>
   <nav class="app-nav" :class="{ 'menu-open': menuOpen }">
-    <a href="#hero" class="nav-logo" @click="closeMenu">MI.</a>
+    <RouterLink v-if="!isHome" to="/" class="nav-logo" @click="closeMenu">MI.</RouterLink>
+    <a v-else href="#hero" class="nav-logo" @click="closeMenu">MI.</a>
 
     <!-- Desktop links -->
     <ul class="nav-links">
-      <li v-for="link in navLinks" :key="link.href">
-        <a :href="link.href">{{ link.label }}</a>
+      <li v-for="link in navLinks" :key="link.href || link.to" :class="{ 'is-page': link.page }">
+        <RouterLink v-if="link.to" :to="link.to">{{ link.label }}<span v-if="link.page" class="nav-page-arrow" aria-hidden="true">↗</span></RouterLink>
+        <a v-else :href="link.href">{{ link.label }}</a>
       </li>
     </ul>
 
@@ -40,7 +70,7 @@ function closeMenu()  { menuOpen.value = false }
       <button
         class="theme-toggle"
         @click="themeStore.toggle"
-        :aria-label="isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'"
+        :aria-label="themeLabel"
       >
         <span class="theme-icon">
           <!-- Sun (light mode) -->
@@ -53,7 +83,7 @@ function closeMenu()  { menuOpen.value = false }
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </span>
-        <span class="theme-label">{{ isDark ? 'Light — Tema café' : 'Dark — Tema noite' }}</span>
+        <span class="theme-label">{{ themeLabel }}</span>
       </button>
 
       <!-- Divider -->
@@ -63,7 +93,7 @@ function closeMenu()  { menuOpen.value = false }
       <button
         class="locale-toggle"
         @click="locale.toggle"
-        :aria-label="`Switch to ${locale.locale === 'pt-BR' ? 'English' : 'Português'}`"
+        :aria-label="`PT / EN — ${locale.locale === 'pt-BR' ? 'Switch to English' : 'Mudar para português'}`"
       >
         <span :class="{ active: locale.locale === 'pt-BR' }">PT</span>
         <span class="locale-divider">/</span>
@@ -90,8 +120,9 @@ function closeMenu()  { menuOpen.value = false }
     <Transition name="drawer">
       <div v-if="menuOpen" class="nav-drawer">
         <ul>
-          <li v-for="link in navLinks" :key="link.href">
-            <a :href="link.href" @click="closeMenu">{{ link.label }}</a>
+          <li v-for="link in navLinks" :key="link.href || link.to" :class="{ 'is-page': link.page }">
+            <RouterLink v-if="link.to" :to="link.to" @click="closeMenu">{{ link.label }}<span v-if="link.page" aria-hidden="true"> ↗</span></RouterLink>
+            <a v-else :href="link.href" @click="closeMenu">{{ link.label }}</a>
           </li>
         </ul>
 
@@ -107,7 +138,7 @@ function closeMenu()  { menuOpen.value = false }
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </span>
-            {{ isDark ? 'Light — Tema café' : 'Dark — Tema noite' }}
+            {{ themeLabel }}
           </button>
 
           <button class="locale-toggle locale-toggle--drawer" @click="locale.toggle">
@@ -147,6 +178,28 @@ function closeMenu()  { menuOpen.value = false }
   color: var(--color-text-muted); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--color-error); }
+
+/* links to the specialised portfolios: set apart from the in-page anchors */
+.nav-links li.is-page a { color: var(--color-link); }
+.nav-links li.is-page a:hover { color: var(--color-error); }
+.nav-links li:not(.is-page) + li.is-page {
+  padding-left: 2.5rem;
+  border-left: 1px solid color-mix(in srgb, var(--color-text-muted) 35%, transparent);
+}
+.nav-page-arrow {
+  display: inline-block;
+  margin-left: 0.3em;
+  transition: transform 0.2s ease;
+}
+.nav-links li.is-page a:hover .nav-page-arrow { transform: translate(2px, -2px); }
+@media (max-width: 1240px) {
+  .nav-links { gap: 1.5rem; }
+  .nav-links li:not(.is-page) + li.is-page { padding-left: 1.5rem; }
+}
+/* not enough room before the hamburger kicks in: the home's portfolio section links there */
+@media (max-width: 960px) {
+  .nav-links li.is-page { display: none; }
+}
 
 /* ── Right group ── */
 .nav-right {
@@ -231,6 +284,19 @@ function closeMenu()  { menuOpen.value = false }
   display: block; transition: color 0.2s;
 }
 .nav-drawer a:hover { color: var(--color-error); }
+/* "safe" keeps the top items reachable when the list is taller than a short phone */
+.nav-drawer { overflow-y: auto; padding-block: 5rem 2rem; justify-content: safe center; }
+.nav-drawer:has(li.is-page) ul { gap: 1.6rem; }
+.nav-drawer li.is-page a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.95rem; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-link);
+}
+.nav-drawer li:not(.is-page) + li.is-page {
+  margin-top: 0.6rem; padding-top: 1.6rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-text-muted) 30%, transparent);
+}
 
 .drawer-toggles {
   display: flex; flex-direction: column;

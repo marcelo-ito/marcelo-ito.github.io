@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import '@mdi/font/css/materialdesignicons.css'
 import { onMounted, computed } from 'vue'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -99,7 +100,7 @@ onMounted(() => {
 <style scoped>
 .skills-section { position: relative; z-index: 1; padding: 8rem 3rem; background: var(--color-accent3); }
 .section-header { display: flex; align-items: baseline; gap: 2rem; margin-bottom: 5rem; overflow: hidden; }
-.section-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--color-accent1); }
+.section-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--color-link); }
 .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1; opacity: 0; transform: translateY(40px); }
 .section-line { flex: 1; height: 1px; background: var(--color-accent1); opacity: 0.4; }
 .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }

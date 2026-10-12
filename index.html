@@ -5,6 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Theme + route palette on <html> before any stylesheet is parsed. If the classes arrive
+       later (from the app), every element runs its 0.35s colour transition once: a visible
+       flash of the wrong palette plus ~1s of style recalcs on mobile.
+       Mirrors useTheme.ts (storage key) and App.vue (route-* classes). -->
+  <script>
+    (function () {
+      var root = document.documentElement
+      try {
+        var saved = localStorage.getItem('portfolio-theme')
+        var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        if (dark) root.classList.add('dark')
+      } catch (e) {}
+      var page = location.pathname.replace(/\/+$/, '').split('/').pop()
+      root.classList.add('route-' + (page === 'frontend' || page === 'backend' ? page : 'home'))
+    })()
+  </script>
+
   <!-- ═══════════════════════════════════════════
        IDENTIDADE & SEO BÁSICO
   ═══════════════════════════════════════════ -->
@@ -64,6 +81,11 @@
   ═══════════════════════════════════════════ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Non-blocking: text paints with the fallback stack first (display=swap). Browsers only
+       download the font files a page actually renders, so listing every family here is cheap. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" /></noscript>
 
   <!-- ═══════════════════════════════════════════
        SCHEMA.ORG — dados estruturados (JSON-LD)

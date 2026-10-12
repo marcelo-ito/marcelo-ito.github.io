@@ -91,7 +91,7 @@ onMounted(() => {
   font-family: 'DM Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.15em;
-  color: var(--color-accent1);
+  color: var(--color-link);
 }
 
 .section-title {
@@ -204,7 +204,7 @@ onMounted(() => {
   font-family: 'DM Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--color-accent1);
+  color: var(--color-link);
   text-transform: uppercase;
 }
 

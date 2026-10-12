@@ -10,13 +10,14 @@ gsap.registerPlugin(ScrollTrigger)
 const locale = useLocaleStore()
 const t      = computed(() => locale.t)
 
+// same order as projects.items in the locale files
 const tags = [
-  ['.NET 9', 'Vue 3', 'PostgreSQL', 'Gemini AI', 'Vuetify', 'QuestPDF'],
-  ['Python', 'FAISS', 'Gemini'],
-  ['BERT', 'sklearn', 'HuggingFace'],
-  ['MailKit', 'Hangfire', '.NET'],
-  ['.NET'],
-  ['Python', 'Numpy', 'Pandas', 'Seaborn', 'Matplotlib'],
+  ['.NET 10', 'Vue 3', 'PostgreSQL', 'Gemini AI', 'OpenTelemetry', 'Hangfire'],
+  ['Next.js 16', 'Prisma', 'PostgreSQL', 'GitHub API'],
+  ['Nuxt 4', 'Drizzle', 'PostgreSQL'],
+  ['WebRTC', 'Node.js', 'React'],
+  ['Spring Boot', 'React', 'PostgreSQL'],
+  ['.NET 10', 'Vue 3', 'EF Core'],
 ]
 
 const projects = computed<Project[]>(() =>
@@ -63,7 +64,7 @@ onMounted(() => {
 <style scoped>
 .projetos-section { position: relative; z-index: 1; padding: 8rem 3rem; background: var(--color-bg); }
 .section-header { display: flex; align-items: baseline; gap: 2rem; margin-bottom: 5rem; overflow: hidden; }
-.section-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--color-accent1); }
+.section-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--color-link); }
 .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1; opacity: 0; transform: translateY(40px); }
 .section-line { flex: 1; height: 1px; background: var(--color-accent1); opacity: 0.4; }
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }

@@ -1,10 +1,13 @@
 {
   "nav": {
+    "home":       "Início",
     "about":      "Sobre",
     "projects":   "Projetos",
     "skills":     "Skills",
     "experience": "Experiência",
-    "contact":    "Contato"
+    "contact":    "Contato",
+    "frontend":   "Frontend",
+    "backend":    "Backend"
   },
   "hero": {
     "available":  "✦ Disponível para projetos",
@@ -40,6 +43,25 @@
     "cv":          "Download CV",
     "photoAlt":    "Foto de Marcelo Ito"
   },
+  "portfolios": {
+    "eyebrow": "✦",
+    "title": "Portfólios especializados",
+    "intro": "Você está no meu portfólio completo. Se procura algo específico, cada lado tem a sua própria página:",
+    "frontend": {
+      "tag": "Para quem quer um site",
+      "title": "Frontend",
+      "text": "Sites e landing pages bonitos, rápidos e acessíveis — Vue, React, GSAP e Three.js, com os projetos de interface que construí.",
+      "cta": "Ver portfólio frontend",
+      "alt": "Prévia da página do portfólio frontend"
+    },
+    "backend": {
+      "tag": "Para recrutadores",
+      "title": "Backend",
+      "text": "APIs, microsserviços e dados — .NET, Spring Boot, Node.js e Kubernetes, com diagramas de arquitetura de cada sistema.",
+      "cta": "Ver portfólio backend",
+      "alt": "Prévia da página do portfólio backend"
+    }
+  },
   "projects": {
     "sectionNum":         "02",
     "title":              "Projetos",
@@ -48,27 +70,27 @@
     "items": [
       {
         "name":        "Minoru",
-        "description": "Aplicação full-stack de produtividade e finanças pessoais. Blog, Kanban, finanças, sessões de estudo com IA, autenticação Google OAuth e geração de PDFs."
+        "description": "Aplicação full-stack de produtividade e finanças pessoais: kanban, finanças com relatórios, sessões de estudo com IA, login com Google e observabilidade completa com OpenTelemetry e Grafana."
       },
       {
-        "name":        "RAG<br>Engine",
-        "description": "Sistema de retrieval-augmented generation com Sentence-BERT, FAISS e Gemini API."
+        "name":        "ShipProof",
+        "description": "Gestor de tarefas que usa o Git como evidência: só considera uma tarefa publicada quando branch, Pull Request, merge e deploy comprovam. Webhooks do GitHub e do GitLab, fila e worker."
       },
       {
-        "name":        "NLP<br>Pipeline",
-        "description": "Classificação de texto com TF-IDF, Naive Bayes, SVM e fine-tuning de DistilBERT."
+        "name":        "Central de<br>Chamados",
+        "description": "Sistema de chamados de TI com SLA, notificações, painel por perfil e relatórios — integrado ao ShipProof para levar chamados ao time de desenvolvimento."
       },
       {
-        "name":        "Email<br>Notifier",
-        "description": "Sistema de notificações com MailKit e Hangfire para agendamento de tarefas em background."
+        "name":        "Sightline",
+        "description": "Compartilhamento de tela peer-to-peer no navegador via WebRTC, com salas por link, vários participantes e servidor de sinalização em Node.js."
       },
       {
-        "name":        "Discord<br>Bot",
-        "description": "Projeto simples para finalidades pessoais. O bot é responsável por me avisar de fazer o Duolingo e enviar as últimas 4 notícias publicadas pelo Correio Braziliense, através da API NewsData."
+        "name":        "Prontuário<br>Eletrônico",
+        "description": "Prontuário multi-clínica com controle de acesso por perfil, trilha de auditoria imutável e aderência à LGPD, em Spring Boot e React."
       },
       {
-        "name":        "Análise de Arrecadação de Impostos Federais no Brasil<br>(2000–2024)",
-        "description": "Análise exploratória e descritiva dos dados de arrecadação de impostos federais no Brasil, identificando tendências, variações por estado/ano e os principais fatores que influenciaram a arrecadação federal."
+        "name":        "Trading<br>Comex",
+        "description": "ERP de comércio exterior em Clean Architecture e DDD: contratos com Incoterms, logística, documentação aduaneira e câmbio, com mais de 700 testes."
       }
     ]
   },
@@ -109,5 +131,415 @@
   },
   "splash": {
     "role": "Fullstack Developer"
+  },
+  "frontendPage": {
+    "hero": {
+      "srName": "Marcelo Ito, desenvolvedor frontend:",
+      "chip": "Desenvolvedor Frontend",
+      "titlePre": "Páginas",
+      "titleWords": [
+        "bonitas",
+        "rápidas",
+        "acessíveis",
+        "responsivas"
+      ],
+      "titlePost": "que fazem sua marca ser lembrada.",
+      "subtitle": "Transformo sua ideia em um site moderno, com animações suaves e carregamento rápido em qualquer tela — do primeiro rascunho até ele estar no ar.",
+      "cta": "Baixar currículo",
+      "ctaSecondary": "Ver projetos",
+      "scroll": "Rolar até a seção Sobre",
+      "photoAlt": "Foto de Marcelo Ito",
+      "orbit": [
+        "Vue 3",
+        "React",
+        "GSAP",
+        "Three.js",
+        "Tailwind",
+        "A11y"
+      ]
+    },
+    "about": {
+      "eyebrow": "01 — Sobre mim",
+      "intro": "Oi! Sou o Marcelo — crio interfaces que unem estética e desempenho.",
+      "full": "Trabalho com Vue, React, Nuxt e Next, animações com GSAP e cenas 3D com Three.js quando o projeto pede — sempre de olho na nota do Lighthouse, porque página bonita que demora para abrir perde visitante. Antes de programar em tempo integral, passei mais de três anos como analista de QA: por isso cada entrega passa por testes, revisão em vários tamanhos de tela e acessibilidade antes de chegar até você.",
+      "cardsTitle": "O que você recebe",
+      "cards": [
+        {
+          "title": "Design que encanta",
+          "text": "Layout moderno, tipografia cuidada e microinterações que deixam a navegação agradável."
+        },
+        {
+          "title": "Rápido de verdade",
+          "text": "Imagens otimizadas, código dividido por página e animações leves — medido no Lighthouse."
+        },
+        {
+          "title": "Em qualquer tela",
+          "text": "Pensado primeiro para o celular e testado do smartphone ao monitor grande."
+        },
+        {
+          "title": "Acessível e encontrável",
+          "text": "HTML semântico, navegação por teclado, bom contraste e SEO básico desde o começo."
+        }
+      ],
+      "stats": [
+        {
+          "value": 99,
+          "suffix": "/100",
+          "label": "no Lighthouse mobile — Portfólio Imersivo"
+        },
+        {
+          "value": 3,
+          "prefix": "+",
+          "label": "anos garantindo qualidade de software (QA)"
+        },
+        {
+          "value": 6,
+          "label": "interfaces apresentadas nesta página"
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "02 — Projetos",
+      "title": "Trabalhos selecionados",
+      "intro": "Interfaces que construí do zero — de portfólios editoriais a jogos em 3D. Arraste, use as setas ou o teclado.",
+      "concept": "Projeto conceito",
+      "conceptHint": "Pessoa fictícia, criada para demonstrar o trabalho",
+      "prev": "Projeto anterior",
+      "next": "Próximo projeto",
+      "of": "de",
+      "carouselLabel": "Projetos de frontend",
+      "highlightsLabel": "Destaques",
+      "stackLabel": "Tecnologias",
+      "screenshotAlt": "Captura de tela do projeto",
+      "items": {
+        "sofia-lune": {
+          "name": "Sofia Lune",
+          "category": "Portfólio editorial · Moda",
+          "description": "Site de uma modelo com cara de revista: fotografia em preto e branco, tipografia grande, cursor próprio e uma seção em 3D que distorce a foto conforme o mouse e a rolagem.",
+          "highlights": [
+            "Shader 3D próprio reagindo ao mouse e ao scroll",
+            "Revelações coreografadas com GSAP e rolagem suave com Lenis",
+            "Lighthouse 98 no desktop e zero layout shift (CLS 0)"
+          ]
+        },
+        "kaori-vex": {
+          "name": "Kaori Vex",
+          "category": "Portfólio profissional · Cosplay",
+          "description": "Vitrine para uma cosplayer com galeria, página de detalhes de cada traje, agenda de eventos e contato — com tema claro e escuro feito só com CSS, sem framework de UI.",
+          "highlights": [
+            "Apenas Vue e Vue Router em produção: nenhuma biblioteca de UI",
+            "Rota dinâmica para cada traje e sitemap gerado no build",
+            "Acessibilidade, performance e SEO tratados como etapas do projeto"
+          ]
+        },
+        "portfolio-imersivo": {
+          "name": "Do nginx ao Kubernetes",
+          "category": "Experiência interativa · WebGL",
+          "description": "Portfólio narrativo em que uma constelação de partículas 3D reage ao mouse enquanto conta a história de quatro sistemas construídos em sequência. No celular, a cena pesada dá lugar a um céu estrelado em SVG.",
+          "highlights": [
+            "Lighthouse 99 no mobile e 100 no desktop",
+            "Cena WebGL carregada sob demanda, só onde há mouse",
+            "Divisão de código pensada para não pesar no primeiro acesso"
+          ]
+        },
+        "xadrez-3d": {
+          "name": "Xadrez 3D",
+          "category": "Jogo no navegador · 3D",
+          "description": "Xadrez completo em 3D para duas pessoas no mesmo aparelho — desktop, tablet ou celular. Tabuleiro e peças gerados por código, lances animados em arco e som sincronizado com cada pouso.",
+          "highlights": [
+            "Todas as regras: roque, en passant, promoção e empates",
+            "Partida inteira jogável pelo teclado, com narração para leitores de tela",
+            "Temas claro e escuro e respeito a “reduzir movimento”"
+          ]
+        },
+        "cards-game": {
+          "name": "Cards Game",
+          "category": "Jogo multiplayer · Tempo real",
+          "description": "Jogo de cartas para jogar com amigos pela internet: alguém cria a sala, compartilha o código e todos jogam ao mesmo tempo, com o juiz revezando a cada rodada — sem servidor próprio para manter.",
+          "highlights": [
+            "Sincronização em tempo real com Supabase (presença e eventos)",
+            "Animações de cartas, telas e placar com Motion",
+            "Publicado na Vercel com deploy automático a cada push"
+          ]
+        },
+        "memory-gallery": {
+          "name": "Memory Gallery",
+          "category": "App web offline · Álbum de fotos",
+          "description": "Álbum pessoal de memórias com foto, data, história, categorias e tags. Funciona inteiro no navegador, sem conta nem servidor — e gera um backup .zip para levar tudo para outro aparelho.",
+          "highlights": [
+            "Fotos e dados guardados no IndexedDB, mesmo após fechar o navegador",
+            "Busca e filtros por categoria e por tags",
+            "Backup e restauração em .zip feitos no próprio navegador"
+          ]
+        }
+      }
+    },
+    "contact": {
+      "eyebrow": "03 — Contato",
+      "title": "Vamos tirar sua ideia do papel?",
+      "text": "Conte o que você precisa — um site novo, uma landing page ou dar vida a um layout que já existe. Vou adorar conversar sobre o seu projeto.",
+      "email": "Enviar e-mail",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "backendPage": {
+    "hero": {
+      "srName": "Marcelo Ito, desenvolvedor backend.",
+      "command": "whoami",
+      "role": "Desenvolvedor Backend",
+      "tagline": "APIs, sistemas distribuídos e dados — com testes de verdade, observabilidade e deploy automatizado.",
+      "stackFile": "stack.yml",
+      "stackComment": "# o que eu uso no dia a dia e nos projetos",
+      "stack": [
+        {
+          "key": "linguagens",
+          "items": [
+            "C#",
+            "Java",
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "SQL"
+          ]
+        },
+        {
+          "key": "backend",
+          "items": [
+            "ASP.NET Core",
+            "Spring Boot",
+            "Node.js",
+            "Fastify",
+            "Nitro",
+            "Hangfire"
+          ]
+        },
+        {
+          "key": "orm",
+          "items": [
+            "EF Core",
+            "JPA/Hibernate",
+            "Prisma",
+            "Drizzle",
+            "Flyway"
+          ]
+        },
+        {
+          "key": "dados",
+          "items": [
+            "PostgreSQL",
+            "SQL Server",
+            "MongoDB",
+            "Redis",
+            "SQLite"
+          ]
+        },
+        {
+          "key": "mensageria",
+          "items": [
+            "RabbitMQ",
+            "SSE",
+            "WebSocket",
+            "WebRTC"
+          ]
+        },
+        {
+          "key": "infra",
+          "items": [
+            "Docker",
+            "Kubernetes",
+            "nginx",
+            "GitHub Actions",
+            "MinIO"
+          ]
+        },
+        {
+          "key": "observabilidade",
+          "items": [
+            "OpenTelemetry",
+            "Prometheus",
+            "Grafana",
+            "Loki",
+            "Tempo"
+          ]
+        },
+        {
+          "key": "testes",
+          "items": [
+            "xUnit",
+            "JUnit 5",
+            "Testcontainers",
+            "Vitest",
+            "k6",
+            "Cypress",
+            "Playwright"
+          ]
+        },
+        {
+          "key": "frontend",
+          "items": [
+            "Vue 3",
+            "Nuxt",
+            "React",
+            "Next.js"
+          ]
+        }
+      ],
+      "cta": "Baixar currículo",
+      "ctaSecondary": "Ver projetos",
+      "photoAlt": "Foto de Marcelo Ito",
+      "photoFile": "marcelo.jpg",
+      "scroll": "Rolar até a seção Sobre"
+    },
+    "about": {
+      "eyebrow": "01 — sobre mim",
+      "intro": "Sou o Marcelo — desenvolvedor backend que gosta de sistema previsível: testado, observável e fácil de colocar no ar.",
+      "full": [
+        "Desde julho de 2025 atuo como desenvolvedor fullstack na Triveni Holding, mantendo e evoluindo aplicações em .NET com Entity Framework e Vue, com Docker, SonarQube e Scrum no dia a dia.",
+        "Antes disso foram quase quatro anos como Analista de Qualidade na Skychart: automação de testes com Cypress, SQL para corrigir e validar dados vindos de APIs externas e scripts para automatizar rotinas do time. Essa base em QA define como eu programo — teste de integração contra banco real, medir antes de otimizar e decisões documentadas.",
+        "Fora do trabalho, construo sistemas completos para ir fundo em backend: microsserviços com mensageria e Kubernetes, prontuário eletrônico com auditoria para a LGPD e um ERP de comércio exterior em Clean Architecture."
+      ],
+      "logCommand": "git log --oneline carreira",
+      "log": [
+        {
+          "hash": "f3a91c2",
+          "tag": "feat",
+          "text": "Desenvolvedor Fullstack @ Triveni Holding — .NET, EF Core, Vue, Docker",
+          "when": "jul/2025 – hoje"
+        },
+        {
+          "hash": "8d04e7b",
+          "tag": "test",
+          "text": "Analista de Qualidade @ Skychart — Cypress, SQL, automação",
+          "when": "out/2021 – jun/2025"
+        },
+        {
+          "hash": "0a1e2c9",
+          "tag": "init",
+          "text": "Ciência da Computação → Análise e Desenvolvimento de Sistemas",
+          "when": ""
+        }
+      ],
+      "stats": [
+        {
+          "value": 1400,
+          "prefix": "+",
+          "label": "testes automatizados só no Minoru e no TradingComex"
+        },
+        {
+          "value": 3,
+          "prefix": "+",
+          "label": "anos garantindo qualidade de software (QA)"
+        },
+        {
+          "value": 4,
+          "label": "ecossistemas backend: .NET, Java, Node.js e Python"
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "02 — projetos",
+      "title": "Sistemas que construí",
+      "intro": "Oito projetos completos, com arquitetura, testes e infraestrutura. Cada diagrama mostra como as peças conversam — passe o mouse sobre um componente para ver suas conexões.",
+      "prev": "Projeto anterior",
+      "next": "Próximo projeto",
+      "of": "de",
+      "carouselLabel": "Projetos de backend",
+      "highlightsLabel": "Destaques",
+      "stackLabel": "Tecnologias",
+      "diagramLabel": "Diagrama de arquitetura do projeto",
+      "items": {
+        "shipproof": {
+          "name": "ShipProof",
+          "category": "Gestão de tarefas · Git como evidência",
+          "description": "Gestor de tarefas para times de desenvolvimento que não confia no “Done”: acompanha branch, commits, Pull Request, merge e deploy, e só declara a tarefa publicada quando o Git comprova. Integra com GitHub e GitLab e recebe chamados da Central de Chamados.",
+          "highlights": [
+            "Webhooks assinados (HMAC) e idempotentes, processados por um worker com fila e outbox no PostgreSQL",
+            "Motor de publicação com regras configuráveis: merge, deploy ou pipeline de produção",
+            "Mais de 200 testes (unidade, integração com Postgres real e E2E) e auditoria de segurança com os 25 achados tratados"
+          ]
+        },
+        "orderflow": {
+          "name": "OrderFlow",
+          "category": "Microsserviços · Kubernetes",
+          "description": "Plataforma de pedidos orientada a eventos: três serviços Spring Boot conversando por RabbitMQ, com MongoDB e gateway nginx — depois levada para um cluster Kubernetes com um pipeline que testa, publica a imagem, faz o deploy e reverte sozinho se algo falhar.",
+          "highlights": [
+            "Rolling update com 148 de 148 requisições respondidas e zero falhas",
+            "Rollback automático no pipeline quando o deploy não fica saudável",
+            "Fila de mensagens mortas (DLQ) e retry validados em três cenários de falha"
+          ]
+        },
+        "pep": {
+          "name": "PEP — Prontuário Eletrônico",
+          "category": "Saúde · Segurança · LGPD",
+          "description": "Prontuário eletrônico multi-clínica: pacientes, atendimentos, receitas, exames e agenda, com controle de acesso por perfil e uma trilha de auditoria que registra até quem apenas consultou um prontuário.",
+          "highlights": [
+            "Auditoria imutável: triggers bloqueiam UPDATE/DELETE e hash SHA-256 denuncia adulteração",
+            "JWT com refresh rotativo e detecção de reuso, RBAC e isolamento entre clínicas",
+            "N+1 eliminado na agenda: p95 de ~3,5 s para ~670 ms sob carga (k6)"
+          ]
+        },
+        "tradingcomex": {
+          "name": "TradingComex",
+          "category": "ERP · Comércio exterior",
+          "description": "ERP de trading e comércio exterior construído módulo a módulo — parceiros, catálogo com NCM, contratos com Incoterms 2020, logística, documentação aduaneira (DI, DU-E) e câmbio — em que cada regra corresponde a uma exigência real de mercado ou da legislação.",
+          "highlights": [
+            "Clean Architecture com DDD: domínio em C# puro, sem dependência de infraestrutura",
+            "587 testes de backend com xUnit, mais 116 no frontend",
+            "Value Objects mapeados no EF Core e validação em três camadas"
+          ]
+        },
+        "minoru": {
+          "name": "Minoru",
+          "category": "Produtividade · Observabilidade",
+          "description": "API de um app de produtividade e finanças pessoais: finanças com relatórios em PDF e CSV, kanban, sessões de estudo com IA (Gemini), cadernos e blog — com jobs em background, login com Google e monitoramento de ponta a ponta.",
+          "highlights": [
+            "Observabilidade self-hosted: OpenTelemetry enviando para Tempo, Prometheus e Loki no Grafana",
+            "Mais de 750 testes, com integração em PostgreSQL real via Testcontainers",
+            "Teste de carga com k6 e benchmarks com BenchmarkDotNet"
+          ]
+        },
+        "helpdesk": {
+          "name": "Central de Chamados",
+          "category": "Service desk · SLA",
+          "description": "Sistema de chamados de TI no estilo GLPI: abertura com anexos, atendimento com notas internas, histórico completo, SLA por prioridade e categoria, painel por perfil e relatórios — e envio do chamado para o time de desenvolvimento no ShipProof.",
+          "highlights": [
+            "Integração com o ShipProof: o chamado vira tarefa e o status volta por webhook assinado",
+            "Rotinas de SLA idempotentes, protegidas por advisory lock do PostgreSQL",
+            "Mais de 140 testes e auditoria de segurança: Argon2id, sessão selada, CSRF e rate limit"
+          ]
+        },
+        "cardapio": {
+          "name": "Cardápio Digital",
+          "category": "Pedidos online · Tempo real",
+          "description": "Cardápio online para restaurantes, com carrinho, checkout e painel administrativo. Os pedidos chegam à cozinha em tempo real e as imagens dos produtos ficam num storage compatível com S3.",
+          "highlights": [
+            "Pedidos em tempo real por SSE, com reconexão e backoff no cliente",
+            "232 testes no backend (87% de cobertura) e 152 no frontend",
+            "Bug de colisão de refresh token encontrado pelos testes e corrigido com jti"
+          ]
+        },
+        "sightline": {
+          "name": "Sightline",
+          "category": "Tempo real · WebRTC",
+          "description": "Compartilhamento de tela peer-to-peer no navegador: cria-se uma sala, envia-se o link e a tela vai direto para os outros participantes por WebRTC. O servidor Node.js só faz a sinalização — nunca vê a tela.",
+          "highlights": [
+            "Malha com vários participantes, padrão “perfect negotiation” e reinício automático de ICE",
+            "Reconexão do WebSocket com retomada de sessão e STUN/TURN com credenciais temporárias",
+            "Cerca de 170 testes com Vitest e E2E com WebRTC real no navegador (Playwright); CI em Node 22 e 24"
+          ]
+        }
+      }
+    },
+    "contact": {
+      "eyebrow": "03 — contato",
+      "command": "contato --recrutador",
+      "title": "Procurando alguém para o seu time de backend?",
+      "text": "Vamos conversar. O currículo resume a experiência; os projetos acima mostram como eu trabalho.",
+      "email": "Enviar e-mail",
+      "cv": "Baixar currículo",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
   }
 }

@@ -38,8 +38,11 @@ function makeBubble(canvasW: number, canvasH: number): Bubble {
 }
 
 function resize(canvas: HTMLCanvasElement) {
+  // The canvas is position:fixed + inset:0, so it only ever covers the
+  // viewport — sizing it to document.body.scrollHeight (previously) drew and
+  // cleared a canvas up to ~9x taller than what's ever visible, every frame.
   canvas.width  = window.innerWidth
-  canvas.height = document.body.scrollHeight
+  canvas.height = window.innerHeight
 }
 
 onMounted(() => {

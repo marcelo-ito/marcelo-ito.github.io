@@ -1,0 +1,158 @@
+/* Shared building blocks for the /backend page (palette comes from html.route-backend).
+   Terminal / IDE look: monospace type, code windows that stay dark in both themes. */
+
+.be-page {
+  --carousel-card-bg: var(--be-glass);
+  --carousel-border: var(--be-border);
+  --carousel-shadow: var(--be-shadow);
+  --carousel-badge: var(--be-a);
+  --carousel-radius: 16px;
+  position: relative;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  overflow-x: clip;
+}
+
+.be-container {
+  width: min(1180px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.be-section {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(5rem, 10vw, 8rem);
+  /* below-the-fold sections skip layout/paint until they approach the viewport */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+.be-eyebrow {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--color-accent1);
+}
+.be-eyebrow::before {
+  content: '//';
+  color: var(--color-text-muted);
+}
+
+.be-heading {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(1.65rem, 3.3vw, 2.5rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+}
+
+.be-prompt {
+  color: var(--color-accent1);
+  font-weight: 700;
+}
+
+/* blinking block caret — opacity only */
+.be-caret {
+  display: inline-block;
+  width: 0.58em;
+  height: 1.05em;
+  margin-left: 0.12em;
+  vertical-align: -0.12em;
+  background: var(--color-accent1);
+  animation: be-blink 1.1s steps(1, end) infinite;
+}
+@keyframes be-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Buttons ──────────────────────────────────────────────────────────────── */
+.be-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+.be-btn.is-magnetic { transition-duration: 0.18s, 0.3s, 0.3s, 0.3s, 0.3s; }
+.be-btn svg { flex-shrink: 0; transition: transform 0.3s var(--ease-out); }
+.be-btn--primary {
+  color: var(--be-on-accent);
+  background: var(--be-btn);
+  box-shadow: 0 12px 28px -14px var(--be-btn);
+}
+.be-btn--primary:hover { box-shadow: 0 16px 34px -12px var(--be-btn); }
+.be-btn--ghost {
+  color: var(--color-text);
+  background: var(--be-glass);
+  border-color: var(--be-border);
+}
+.be-btn--ghost:hover { border-color: var(--color-accent1); color: var(--color-accent1); }
+.be-btn:hover svg.arrow { transform: translateX(3px); }
+.be-btn:hover svg.arrow-down { transform: translateY(3px); }
+
+.be-page a:focus-visible,
+.be-page button:focus-visible,
+.be-page [tabindex]:focus-visible {
+  outline: 2px solid var(--color-accent1);
+  outline-offset: 3px;
+}
+
+/* Code / terminal window ──────────────────────────────────────────────── */
+.be-window {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--be-code-text);
+  background: var(--be-code-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--be-shadow);
+}
+.be-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.74rem;
+  color: var(--be-code-punct);
+  background: var(--be-code-bar);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.be-dots { display: flex; gap: 6px; }
+.be-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+.be-dots i:nth-child(2) { background: #febc2e; }
+.be-dots i:nth-child(3) { background: #28c840; }
+.be-window-title {
+  flex: 1;
+  margin-right: 42px; /* optically centre past the dots */
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .be-container { width: min(1180px, 100% - 2.5rem); }
+  .be-btn { padding: 0.8rem 1.15rem; font-size: 0.84rem; }
+}

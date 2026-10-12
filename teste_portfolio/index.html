@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste — Hero Section Animada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   Tokens — mesma paleta do portfólio principal
+   ───────────────────────────────────────────── */
+:root {
+  --color-bg: #fefae0;
+  --color-surface: #faedcd;
+  --color-accent1: #d4a373;
+  --color-accent2: #ccd5ae;
+  --color-accent3: #e9edc9;
+  --color-text: #3d2b1f;
+  --color-text-muted: #7c6b5a;
+  --color-error: #b85c38;
+  --color-success: #7c9a63;
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(61, 43, 31, 0.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.dark {
+  --color-bg: #0d0f14;
+  --color-surface: #141720;
+  --color-accent1: #d4a373;
+  --color-accent2: #4a6fa5;
+  --color-accent3: #1e2a3a;
+  --color-text: #e8e0d0;
+  --color-text-muted: #7a8fa6;
+  --color-error: #c0714a;
+  --color-success: #6aab7e;
+  --glass: rgba(20, 23, 32, 0.55);
+  --glass-border: rgba(232, 224, 208, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ─── Seção ─────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 4rem;
+  padding: 7rem 4rem 6rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ─── Fundo: aurora + grid + grão ───────────── */
+.hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.blob--1 {
+  width: 46vw; height: 46vw; background: var(--color-accent1);
+  top: -12vw; left: -10vw;
+  animation: drift1 18s ease-in-out infinite alternate;
+}
+.blob--2 {
+  width: 38vw; height: 38vw; background: var(--color-accent2);
+  bottom: -14vw; right: -8vw;
+  animation: drift2 22s ease-in-out infinite alternate;
+}
+.blob--3 {
+  width: 24vw; height: 24vw; background: var(--color-error);
+  top: 45%; left: 42%; opacity: 0.3;
+  animation: drift3 16s ease-in-out infinite alternate;
+}
+@keyframes drift1 { to { transform: translate3d(8vw, 6vw, 0) scale(1.15); } }
+@keyframes drift2 { to { transform: translate3d(-7vw, -5vw, 0) scale(1.2); } }
+@keyframes drift3 { to { transform: translate3d(-10vw, 8vw, 0) scale(0.85); } }
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--color-text) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-text) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.045;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 30%, transparent 78%);
+}
+
+.hero-noise {
+  position: absolute; inset: 0; opacity: 0.16; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Coluna esquerda ───────────────────────── */
+.hero-copy { position: relative; max-width: 620px; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--color-accent1);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  padding: 0.45rem 0.95rem; border-radius: 999px;
+  margin-bottom: 1.6rem;
+  opacity: 0; transform: translateY(16px);
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 0 var(--color-success);
+  animation: pulse 2.2s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success) 60%, transparent); }
+  70%  { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.hero-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+  font-weight: 900; line-height: 0.95; letter-spacing: -0.035em;
+  margin-bottom: 0.35rem;
+}
+.hero-name .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em) rotate(6deg);
+  will-change: transform, opacity;
+}
+.hero-name .char--space { width: 0.28em; }
+
+.hero-role {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 2.1rem);
+  font-weight: 700; font-style: italic; line-height: 1.2;
+  color: var(--color-text-muted);
+  margin-bottom: 1.4rem; min-height: 1.3em;
+  opacity: 0; transform: translateY(20px);
+}
+.hero-role .typed { color: var(--color-error); font-style: normal; }
+.caret {
+  display: inline-block; width: 2px; height: 0.95em;
+  background: var(--color-accent1); vertical-align: -0.12em;
+  margin-left: 3px; animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-sub {
+  font-size: 1.02rem; line-height: 1.7; color: var(--color-text-muted);
+  max-width: 460px; margin-bottom: 2.4rem;
+  opacity: 0; transform: translateY(20px);
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; opacity: 0; transform: translateY(20px); }
+
+.btn {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: inherit; font-size: 0.78rem;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  padding: 0.95rem 1.9rem; border: 1px solid var(--color-text);
+  cursor: pointer; will-change: transform;
+}
+.btn--primary { background: var(--color-text); color: var(--color-bg); }
+.btn--primary::after {
+  content: ''; position: absolute; inset: 0; background: var(--color-error);
+  transform: translateY(101%); transition: transform 0.45s var(--ease-out);
+}
+.btn--primary:hover::after { transform: translateY(0); }
+.btn--primary span, .btn--primary svg { position: relative; z-index: 1; }
+.btn--ghost { background: transparent; color: var(--color-text); border-color: var(--glass-border); }
+.btn--ghost:hover { border-color: var(--color-accent1); color: var(--color-accent1); }
+.btn svg { transition: transform 0.3s var(--ease-out); }
+.btn:hover svg { transform: translateX(5px); }
+
+/* ─── Coluna direita: órbita + card ─────────── */
+.hero-visual { position: relative; height: 540px; opacity: 0; }
+.orbit-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px dashed var(--glass-border);
+}
+.ring--1 { width: 460px; height: 460px; animation: spin 46s linear infinite; }
+.ring--2 { width: 330px; height: 330px; border-style: solid; border-color: color-mix(in srgb, var(--color-accent1) 35%, transparent); animation: spin 30s linear infinite reverse; }
+.ring--3 { width: 210px; height: 210px; animation: spin 20s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+
+.ring .sat {
+  position: absolute; top: -6px; left: 50%;
+  width: 12px; height: 12px; margin-left: -6px; border-radius: 50%;
+  background: var(--color-accent1);
+}
+.ring--2 .sat { background: var(--color-error); width: 10px; height: 10px; }
+.ring--3 .sat { background: var(--color-success); width: 8px; height: 8px; }
+
+.core {
+  width: 132px; height: 132px; border-radius: 46% 54% 60% 40% / 52% 44% 56% 48%;
+  background: linear-gradient(140deg, var(--color-accent1), var(--color-accent2));
+  animation: morph 9s ease-in-out infinite alternate, float 6s ease-in-out infinite;
+}
+@keyframes morph {
+  to { border-radius: 62% 38% 40% 60% / 44% 62% 38% 56%; rotate: 28deg; scale: 1.08; }
+}
+@keyframes float { 50% { translate: 0 -14px; } }
+
+.code-card {
+  position: absolute; right: -0.5rem; bottom: 4%;
+  width: 264px; padding: 1.1rem 1.3rem;
+  background: var(--glass); backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--color-accent1);
+  border-radius: 4px;
+  font-size: 0.72rem; line-height: 1.85;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.35);
+}
+.code-card .k { color: var(--color-accent1); }
+.code-card .v { color: var(--color-text-muted); }
+.code-card .ok { color: var(--color-success); }
+.code-card .cm { color: var(--color-text-muted); opacity: 0.7; }
+
+.badge {
+  position: absolute; top: 6%; left: 0;
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.55rem 1rem; border-radius: 999px;
+  background: var(--glass); backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ─── Rodapé da hero ────────────────────────── */
+.scroll-cue {
+  position: absolute; left: 4rem; bottom: 2.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.scroll-cue i {
+  display: block; width: 64px; height: 1px; background: var(--color-accent1);
+  transform-origin: left; animation: sweep 2s ease-in-out infinite;
+}
+@keyframes sweep { 0%, 100% { transform: scaleX(0.1); } 50% { transform: scaleX(1); } }
+
+.theme-toggle {
+  position: absolute; top: 1.6rem; right: 4rem;
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border); color: var(--color-text);
+  font-family: inherit; font-size: 0.68rem; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 0.6rem 1.1rem;
+  border-radius: 999px; cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--color-accent1); color: var(--color-accent1); }
+
+/* ─── Responsivo ────────────────────────────── */
+@media (max-width: 1100px) {
+  .hero { padding: 6rem 2.5rem 5rem; gap: 2rem; }
+  .hero-visual { height: 430px; }
+  .ring--1 { width: 360px; height: 360px; }
+  .ring--2 { width: 260px; height: 260px; }
+  .ring--3 { width: 170px; height: 170px; }
+  .theme-toggle { right: 2.5rem; }
+  .scroll-cue { left: 2.5rem; }
+}
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 4.5rem; }
+  .hero-visual { display: none; }
+  .hero-sub { max-width: 100%; }
+  .theme-toggle { right: 1.5rem; }
+  .scroll-cue { left: 1.5rem; }
+}
+
+/* ─── Acessibilidade ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .eyebrow, .hero-role, .hero-sub, .hero-actions, .hero-visual { opacity: 1 !important; transform: none !important; }
+  .hero-name .char { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-noise"></div>
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" type="button">Tema</button>
+
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="dot"></span> Disponível para novos projetos</p>
+
+    <h1 class="hero-name" data-split>Marcelo Ito</h1>
+
+    <p class="hero-role">
+      Construindo <span class="typed" id="typed"></span><span class="caret"></span>
+    </p>
+
+    <p class="hero-sub">
+      Desenvolvedor full-stack focado em interfaces rápidas, acessíveis e com
+      personalidade — do .NET no backend ao Vue na ponta.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn--primary" href="#projetos" data-magnetic>
+        <span>Ver projetos</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#contato" data-magnetic>
+        <span>Falar comigo</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="orbit-stage" data-depth="14">
+      <div class="ring ring--1"><i class="sat"></i></div>
+      <div class="ring ring--2"><i class="sat"></i></div>
+      <div class="ring ring--3"><i class="sat"></i></div>
+      <div class="core"></div>
+    </div>
+
+    <div class="badge" data-depth="40" data-float="8"><span class="dot"></span> deploy ok</div>
+
+    <div class="code-card" data-depth="46" data-float="7">
+      <span class="cm">// stack atual</span><br>
+      <span class="k">backend</span>: <span class="v">.NET 9</span><br>
+      <span class="k">frontend</span>: <span class="v">Vue 3</span><br>
+      <span class="k">banco</span>: <span class="v">PostgreSQL</span><br>
+      <span class="k">status</span>: <span class="ok">online</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><i></i><span>role para baixo</span></div>
+</section>
+
+<script>
+(function () {
+  'use strict'
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  var canHover = window.matchMedia('(hover: hover)').matches
+
+  /* ── 1. Alternador de tema ────────────────── */
+  var toggle = document.getElementById('themeToggle')
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark')
+  }
+  toggle.addEventListener('click', function () {
+    document.documentElement.classList.toggle('dark')
+  })
+
+  /* ── 2. Quebra do nome em caracteres ──────── */
+  var title = document.querySelector('[data-split]')
+  var text = title.textContent
+  var chars = []
+  title.textContent = ''
+  text.split('').forEach(function (ch) {
+    var span = document.createElement('span')
+    span.className = ch === ' ' ? 'char char--space' : 'char'
+    span.textContent = ch === ' ' ? ' ' : ch
+    title.appendChild(span)
+    chars.push(span)
+  })
+
+  /* ── 3. Timeline de entrada (Web Animations) ─ */
+  function reveal(el, delay, fromY) {
+    if (!el) return
+    if (reduce) { el.style.opacity = 1; return }
+    el.animate(
+      [
+        { opacity: 0, transform: 'translateY(' + fromY + 'px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ],
+      { duration: 800, delay: delay, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'both' }
+    )
+  }
+
+  if (reduce) {
+    chars.forEach(function (c) { c.style.opacity = 1 })
+  } else {
+    chars.forEach(function (c, i) {
+      c.animate(
+        [
+          { opacity: 0, transform: 'translateY(0.55em) rotate(6deg)' },
+          { opacity: 1, transform: 'translateY(0) rotate(0deg)' }
+        ],
+        { duration: 900, delay: 320 + i * 45, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'both' }
+      )
+    })
+  }
+
+  reveal(document.querySelector('.eyebrow'), 150, 16)
+  reveal(document.querySelector('.hero-role'), 850, 20)
+  reveal(document.querySelector('.hero-sub'), 1000, 20)
+  reveal(document.querySelector('.hero-actions'), 1150, 20)
+  reveal(document.querySelector('.hero-visual'), 700, 0)
+
+  /* ── 4. Flutuação dos cards (não conflita com o parallax) ── */
+  if (!reduce) {
+    document.querySelectorAll('[data-float]').forEach(function (el, i) {
+      el.animate(
+        [{ translate: '0 0' }, { translate: '0 -14px' }, { translate: '0 0' }],
+        {
+          duration: parseFloat(el.dataset.float) * 1000,
+          delay: i * 600,
+          iterations: Infinity,
+          easing: 'ease-in-out',
+          composite: 'add'
+        }
+      )
+    })
+  }
+
+  /* ── 5. Parallax de mouse nas camadas ─────── */
+  var layers = document.querySelectorAll('[data-depth]')
+  var tx = 0, ty = 0, cx = 0, cy = 0, raf = null
+
+  function loop() {
+    cx += (tx - cx) * 0.075
+    cy += (ty - cy) * 0.075
+    layers.forEach(function (el) {
+      var d = parseFloat(el.dataset.depth) / 100
+      el.style.transform = 'translate(' + (cx * d).toFixed(2) + 'px,' + (cy * d).toFixed(2) + 'px)'
+    })
+    if (Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1) {
+      raf = requestAnimationFrame(loop)
+    } else {
+      raf = null
+    }
+  }
+
+  if (!reduce && canHover) {
+    window.addEventListener('mousemove', function (e) {
+      tx = e.clientX - window.innerWidth / 2
+      ty = e.clientY - window.innerHeight / 2
+      if (!raf) raf = requestAnimationFrame(loop)
+    })
+  }
+
+  /* ── 6. Máquina de escrever ───────────────── */
+  var words = ['APIs em .NET', 'interfaces em Vue', 'produtos com IA', 'experiências web']
+  var out = document.getElementById('typed')
+  var w = 0, i = 0, erasing = false
+
+  function type() {
+    var word = words[w]
+    out.textContent = word.slice(0, i)
+    if (!erasing && i < word.length) { i++; setTimeout(type, 70) }
+    else if (!erasing) { erasing = true; setTimeout(type, 1600) }
+    else if (i > 0) { i--; setTimeout(type, 35) }
+    else { erasing = false; w = (w + 1) % words.length; setTimeout(type, 260) }
+  }
+
+  if (reduce) { out.textContent = words[0] } else { setTimeout(type, 1400) }
+
+  /* ── 7. Botões magnéticos ─────────────────── */
+  if (!reduce && canHover) {
+    document.querySelectorAll('[data-magnetic]').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect()
+        var mx = e.clientX - r.left - r.width / 2
+        var my = e.clientY - r.top - r.height / 2
+        btn.style.transition = ''
+        btn.style.transform = 'translate(' + mx * 0.25 + 'px,' + my * 0.35 + 'px)'
+      })
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transition = 'transform 0.45s cubic-bezier(0.16,1,0.3,1)'
+        btn.style.transform = 'translate(0,0)'
+      })
+    })
+  }
+})()
+</script>
+</body>
+</html>

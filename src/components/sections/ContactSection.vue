@@ -44,14 +44,14 @@ onMounted(() => {
 
 <style scoped>
 .contato-section { position: relative; z-index: 1; min-height: 100vh; padding: 8rem 3rem; background: var(--color-text); color: var(--color-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.contato-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-accent1); margin-bottom: 2rem; opacity: 0; }
+.contato-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-inv-accent); margin-bottom: 2rem; opacity: 0; }
 .contato-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 7rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 3rem; opacity: 0; transform: translateY(40px); }
-.contato-title em { color: var(--color-accent1); font-style: italic; }
+.contato-title em { color: var(--color-inv-accent); font-style: italic; }
 .contato-links { display: flex; gap: 3rem; margin-bottom: 4rem; opacity: 0; }
 .contato-link { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent3); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 0.2rem; transition: color 0.2s, border-color 0.2s; }
-.contato-link:hover { color: var(--color-accent1); border-bottom-color: var(--color-accent1); }
-.contato-email { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 3.5vw, 1.6rem); font-style: italic; color: var(--color-accent1); text-decoration: none; opacity: 0; border-bottom: 1px solid transparent; transition: border-color 0.2s; word-break: break-all; max-width: 100%; padding: 0 1rem; }
-.contato-email:hover { border-bottom-color: var(--color-accent1); }
+.contato-link:hover { color: var(--color-inv-accent); border-bottom-color: var(--color-inv-accent); }
+.contato-email { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 3.5vw, 1.6rem); font-style: italic; color: var(--color-inv-accent); text-decoration: none; opacity: 0; border-bottom: 1px solid transparent; transition: border-color 0.2s; word-break: break-all; max-width: 100%; padding: 0 1rem; }
+.contato-email:hover { border-bottom-color: var(--color-inv-accent); }
 @media (max-width: 1024px) { .contato-section { padding: 6rem 2rem; } }
 @media (max-width: 768px)  { .contato-section { padding: 5rem 1.5rem 4rem; min-height: auto; } .contato-title { font-size: clamp(2.4rem, 9vw, 3.5rem); line-height: 1; margin-bottom: 2.5rem; } .contato-links { gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; } .contato-email { font-size: clamp(0.9rem, 4vw, 1.1rem); } }
 </style>

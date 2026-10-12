@@ -91,7 +91,7 @@ onMounted(() => {
 .sobre-label {
   font-family: 'DM Mono', monospace; font-size: 0.7rem;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--color-accent1); writing-mode: vertical-rl;
+  color: var(--color-link); writing-mode: vertical-rl;
   transform: rotate(180deg); opacity: 0;
 }
 .sobre-photo-wrap { position: relative; width: 200px; }

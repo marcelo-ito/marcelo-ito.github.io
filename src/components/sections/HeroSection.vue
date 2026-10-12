@@ -80,7 +80,7 @@ onMounted(() => {
 .hero-eyebrow {
   font-family: 'DM Mono', monospace; font-size: 0.72rem;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--color-accent1); margin-bottom: 1rem;
+  color: var(--color-link); margin-bottom: 1rem;
   opacity: 0; transform: translateY(20px);
 }
 .hero-name {
@@ -127,10 +127,10 @@ onMounted(() => {
   font-size: 0.72rem; line-height: 1.8; width: 240px;
   border-left: 3px solid var(--color-accent1);
 }
-.c-comment { color: var(--color-text-muted); }
-.c-key     { color: var(--color-accent1); }
-.c-val     { color: var(--color-accent2); }
-.c-val--ok { color: var(--color-success); }
+.c-comment { color: var(--color-inv-muted); }
+.c-key     { color: var(--color-inv-accent); }
+.c-val     { color: var(--color-inv-value); }
+.c-val--ok { color: var(--color-inv-success); }
 
 .hero-scroll-hint {
   position: absolute; bottom: 2rem; left: 3rem;

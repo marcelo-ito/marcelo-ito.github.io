@@ -15,8 +15,19 @@ const t      = computed(() => locale.t)
 
 <style scoped>
 .app-footer { position: relative; z-index: 1; background: var(--color-text); border-top: 1px solid rgba(254,250,224,0.1); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.app-footer span { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--color-text-muted); }
-.app-footer span.accent { color: var(--color-accent1); }
+.app-footer span { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--color-inv-muted); }
+.app-footer span.accent { color: var(--color-inv-accent); }
+/* The home palette makes --color-text dark in both themes; the other pages flip it light
+   in dark mode, so they use the surface colour instead. */
+html.route-frontend .app-footer,
+html.route-backend .app-footer {
+  background: var(--color-surface);
+  border-top-color: color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+html.route-frontend .app-footer span,
+html.route-backend .app-footer span { color: var(--color-text-muted); }
+html.route-frontend .app-footer span.accent,
+html.route-backend .app-footer span.accent { color: var(--color-accent1); }
 @media (max-width: 1024px) { .app-footer { padding: 1.5rem 2rem; } }
 @media (max-width: 768px)  { .app-footer { padding: 1.25rem 1.5rem; flex-direction: column; text-align: center; gap: 0.5rem; } }
 </style>
